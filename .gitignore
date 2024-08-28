@@ -1,0 +1,6 @@
+*/out/*
+__pycache__/
+__init__.py
+build/
+data/*
+!data/README.md

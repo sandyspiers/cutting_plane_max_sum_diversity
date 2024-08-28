@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for instance in $(ls "./data/TSP"); do
+    for ratio in 50; do
+        ./sh/bq ./build/ct_lm TSP $instance TSP-ct.txt $ratio 10 100 600 3600
+    done
+done
+
+./sh/bq ./build/ct_lm TSP pla85900.tsp TSP-ct-big.txt 10 0
+./sh/bq ./build/ct_lm TSP pla85900.tsp TSP-ct-big.txt 20 0
+./sh/bq ./build/ct_lm TSP pla85900.tsp TSP-ct-big.txt 50 0

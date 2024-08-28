@@ -1,0 +1,14 @@
+#!/bin/bash
+
+timelimits="10 100 600"
+
+for instance_set in "GKD-c" "GKD-d" "GKD-d5" "GKD-d10" "GKD-d15" "GKD-d20"; do
+    for instance in $(ls "./data/$instance_set"); do
+        for ratio in 10 20 50; do
+            ./sh/bq ./build/ct $instance_set $instance $instance_set-ct.txt $ratio $timelimits 3600
+            for solver in "glover" "obma" "quad"; do
+                ./sh/bq ./build/$solver $instance_set $instance $instance_set-$solver.txt $ratio $timelimits
+            done
+        done
+    done
+done
